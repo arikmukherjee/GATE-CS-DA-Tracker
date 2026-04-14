@@ -1,0 +1,1425 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GATE CS/DA - Preparation Tracker</title>
+
+        <!-- Google Fonts: Libre Baskerville, Lora, IBM Plex Mono -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Lucide Icons -->
+        <script src="https://unpkg.com/lucide@latest"></script>
+
+        <script>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ['"Libre Baskerville"', "serif"],
+                            serif: ['"Lora"', "serif"],
+                            mono: ['"IBM Plex Mono"', "monospace"],
+                        },
+                        colors: {
+                            border: "var(--border)",
+                            input: "var(--input)",
+                            ring: "var(--ring)",
+                            background: "var(--background)",
+                            foreground: "var(--foreground)",
+                            primary: {
+                                DEFAULT: "var(--primary)",
+                                foreground: "var(--primary-foreground)",
+                            },
+                            secondary: {
+                                DEFAULT: "var(--secondary)",
+                                foreground: "var(--secondary-foreground)",
+                            },
+                            destructive: {
+                                DEFAULT: "var(--destructive)",
+                                foreground: "var(--destructive-foreground)",
+                            },
+                            muted: {
+                                DEFAULT: "var(--muted)",
+                                foreground: "var(--muted-foreground)",
+                            },
+                            accent: {
+                                DEFAULT: "var(--accent)",
+                                foreground: "var(--accent-foreground)",
+                            },
+                            popover: {
+                                DEFAULT: "var(--popover)",
+                                foreground: "var(--popover-foreground)",
+                            },
+                            card: {
+                                DEFAULT: "var(--card)",
+                                foreground: "var(--card-foreground)",
+                            },
+                            sidebar: {
+                                DEFAULT: "var(--sidebar)",
+                                foreground: "var(--sidebar-foreground)",
+                                primary: "var(--sidebar-primary)",
+                                "primary-foreground":
+                                    "var(--sidebar-primary-foreground)",
+                                accent: "var(--sidebar-accent)",
+                                "accent-foreground":
+                                    "var(--sidebar-accent-foreground)",
+                                border: "var(--sidebar-border)",
+                                ring: "var(--sidebar-ring)",
+                            },
+                        },
+                        borderRadius: {
+                            lg: "var(--radius)",
+                            md: "calc(var(--radius) - 2px)",
+                            sm: "calc(var(--radius) - 4px)",
+                        },
+                        boxShadow: {
+                            "2xs": "var(--shadow-2xs)",
+                            xs: "var(--shadow-xs)",
+                            sm: "var(--shadow-sm)",
+                            DEFAULT: "var(--shadow)",
+                            md: "var(--shadow-md)",
+                            lg: "var(--shadow-lg)",
+                            xl: "var(--shadow-xl)",
+                            "2xl": "var(--shadow-2xl)",
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <style type="text/tailwindcss">
+            @layer base {
+                :root {
+                    --background: #f5f1e6;
+                    --foreground: #4a3f35;
+                    --card: #fffcf5;
+                    --card-foreground: #4a3f35;
+                    --popover: #fffcf5;
+                    --popover-foreground: #4a3f35;
+                    --primary: #a67c52;
+                    --primary-foreground: #ffffff;
+                    --secondary: #e2d8c3;
+                    --secondary-foreground: #5c4d3f;
+                    --muted: #ece5d8;
+                    --muted-foreground: #7d6b56;
+                    --accent: #d4c8aa;
+                    --accent-foreground: #4a3f35;
+                    --destructive: #b54a35;
+                    --destructive-foreground: #ffffff;
+                    --border: #dbd0ba;
+                    --input: #dbd0ba;
+                    --ring: #a67c52;
+                    --chart-1: #a67c52;
+                    --chart-2: #8d6e4c;
+                    --chart-3: #735a3a;
+                    --chart-4: #b3906f;
+                    --chart-5: #c0a080;
+                    --sidebar: #ece5d8;
+                    --sidebar-foreground: #4a3f35;
+                    --sidebar-primary: #a67c52;
+                    --sidebar-primary-foreground: #ffffff;
+                    --sidebar-accent: #d4c8aa;
+                    --sidebar-accent-foreground: #4a3f35;
+                    --sidebar-border: #dbd0ba;
+                    --sidebar-ring: #a67c52;
+                    --radius: 0.25rem;
+                    --shadow-2xs: 2px 3px 5px 0px hsl(28 13% 20% / 0.06);
+                    --shadow-xs: 2px 3px 5px 0px hsl(28 13% 20% / 0.06);
+                    --shadow-sm:
+                        2px 3px 5px 0px hsl(28 13% 20% / 0.12),
+                        2px 1px 2px -1px hsl(28 13% 20% / 0.12);
+                    --shadow:
+                        2px 3px 5px 0px hsl(28 13% 20% / 0.12),
+                        2px 1px 2px -1px hsl(28 13% 20% / 0.12);
+                    --shadow-md:
+                        2px 3px 5px 0px hsl(28 13% 20% / 0.12),
+                        2px 2px 4px -1px hsl(28 13% 20% / 0.12);
+                    --shadow-lg:
+                        2px 3px 5px 0px hsl(28 13% 20% / 0.12),
+                        2px 4px 6px -1px hsl(28 13% 20% / 0.12);
+                    --shadow-xl:
+                        2px 3px 5px 0px hsl(28 13% 20% / 0.12),
+                        2px 8px 10px -1px hsl(28 13% 20% / 0.12);
+                    --shadow-2xl: 2px 3px 5px 0px hsl(28 13% 20% / 0.3);
+                }
+
+                .dark {
+                    --background: #2d2621;
+                    --foreground: #ece5d8;
+                    --card: #3a322c;
+                    --card-foreground: #ece5d8;
+                    --popover: #3a322c;
+                    --popover-foreground: #ece5d8;
+                    --primary: #c0a080;
+                    --primary-foreground: #2d2621;
+                    --secondary: #4a4039;
+                    --secondary-foreground: #ece5d8;
+                    --muted: #312b26;
+                    --muted-foreground: #c5bcac;
+                    --accent: #59493e;
+                    --accent-foreground: #ece5d8;
+                    --destructive: #b54a35;
+                    --destructive-foreground: #ffffff;
+                    --border: #4a4039;
+                    --input: #4a4039;
+                    --ring: #c0a080;
+                    --chart-1: #c0a080;
+                    --chart-2: #b3906f;
+                    --chart-3: #a67c52;
+                    --chart-4: #8d6e4c;
+                    --chart-5: #735a3a;
+                    --sidebar: #2d2621;
+                    --sidebar-foreground: #ece5d8;
+                    --sidebar-primary: #c0a080;
+                    --sidebar-primary-foreground: #2d2621;
+                    --sidebar-accent: #59493e;
+                    --sidebar-accent-foreground: #ece5d8;
+                    --sidebar-border: #4a4039;
+                    --sidebar-ring: #c0a080;
+                    --shadow-2xs: 2px 3px 5px 0px hsl(28 13% 20% / 0.06);
+                    --shadow-xs: 2px 3px 5px 0px hsl(28 13% 20% / 0.06);
+                    --shadow-sm:
+                        2px 3px 5px 0px hsl(28 13% 20% / 0.12),
+                        2px 1px 2px -1px hsl(28 13% 20% / 0.12);
+                    --shadow:
+                        2px 3px 5px 0px hsl(28 13% 20% / 0.12),
+                        2px 1px 2px -1px hsl(28 13% 20% / 0.12);
+                    --shadow-md:
+                        2px 3px 5px 0px hsl(28 13% 20% / 0.12),
+                        2px 2px 4px -1px hsl(28 13% 20% / 0.12);
+                    --shadow-lg:
+                        2px 3px 5px 0px hsl(28 13% 20% / 0.12),
+                        2px 4px 6px -1px hsl(28 13% 20% / 0.12);
+                    --shadow-xl:
+                        2px 3px 5px 0px hsl(28 13% 20% / 0.12),
+                        2px 8px 10px -1px hsl(28 13% 20% / 0.12);
+                    --shadow-2xl: 2px 3px 5px 0px hsl(28 13% 20% / 0.3);
+                }
+            }
+
+            @layer base {
+                * {
+                    @apply border-border;
+                }
+                body {
+                    @apply bg-background text-foreground font-sans;
+                }
+            }
+
+            /* Custom Checkbox Styling */
+            .custom-checkbox {
+                @apply h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none cursor-pointer;
+            }
+            .custom-checkbox:checked {
+                @apply bg-primary text-primary-foreground;
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='20 6 9 17 4 12'%3e%3c/polyline%3e%3c/svg%3e");
+                background-size: 100% 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            .dark .custom-checkbox:checked {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d2621' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='20 6 9 17 4 12'%3e%3c/polyline%3e%3c/svg%3e");
+            }
+        </style>
+    </head>
+    <body class="min-h-screen bg-background font-sans antialiased">
+        <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+            <!-- Header -->
+            <header
+                class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8"
+            >
+                <div>
+                    <h1
+                        class="text-3xl font-bold tracking-tight flex items-center gap-3"
+                    >
+                        <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+                        <span id="pageTitle">GATE CS/DA Tracker</span>
+                    </h1>
+                    <p
+                        class="text-muted-foreground mt-1 text-sm font-serif italic"
+                    >
+                        Track your syllabus completion, revision, and practice.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <!-- Exam Switcher -->
+                    <div
+                        class="flex items-center bg-muted rounded-lg p-1 border border-border"
+                    >
+                        <button
+                            onclick="switchExam('CS')"
+                            id="btn-cs"
+                            class="px-4 py-1.5 text-sm font-medium rounded-md transition-all"
+                        >
+                            CS
+                        </button>
+                        <button
+                            onclick="switchExam('DA')"
+                            id="btn-da"
+                            class="px-4 py-1.5 text-sm font-medium rounded-md transition-all"
+                        >
+                            DA
+                        </button>
+                    </div>
+
+                    <button
+                        onclick="toggleTheme()"
+                        class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 shadow-sm"
+                    >
+                        <i
+                            data-lucide="sun"
+                            class="w-4 h-4 scale-100 dark:scale-0 transition-all absolute"
+                        ></i>
+                        <i
+                            data-lucide="moon"
+                            class="w-4 h-4 scale-0 dark:scale-100 transition-all absolute"
+                        ></i>
+                        <span class="sr-only">Toggle theme</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Controls -->
+            <div class="flex flex-wrap gap-2 mb-8">
+                <button
+                    onclick="resetProgress()"
+                    class="shadow-sm inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                >
+                    <i data-lucide="rotate-ccw" class="w-4 h-4 mr-2"></i> Reset
+                </button>
+                <button
+                    onclick="exportProgress()"
+                    class="shadow-sm inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+                >
+                    <i data-lucide="download" class="w-4 h-4 mr-2"></i> Export
+                </button>
+                <button
+                    onclick="document.getElementById('importFile').click()"
+                    class="shadow-sm inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2"
+                >
+                    <i data-lucide="upload" class="w-4 h-4 mr-2"></i> Import
+                    JSON
+                </button>
+                <input
+                    type="file"
+                    id="importFile"
+                    accept=".json"
+                    class="hidden"
+                    onchange="importProgress(event)"
+                />
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
+                <!-- Total Topics -->
+                <div
+                    class="rounded-lg border bg-card text-card-foreground shadow"
+                >
+                    <div
+                        class="p-6 flex flex-row items-center justify-between space-y-0 pb-2"
+                    >
+                        <h3 class="tracking-tight text-sm font-medium">
+                            Total Topics
+                        </h3>
+                        <i
+                            data-lucide="book-open"
+                            class="w-4 h-4 text-muted-foreground"
+                        ></i>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <div
+                            class="text-2xl font-bold font-mono"
+                            id="totalTopics"
+                        >
+                            0
+                        </div>
+                        <p
+                            class="text-xs text-muted-foreground font-serif italic"
+                        >
+                            Across all subjects
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Completed -->
+                <div
+                    class="rounded-lg border bg-card text-card-foreground shadow"
+                >
+                    <div
+                        class="p-6 flex flex-row items-center justify-between space-y-0 pb-2"
+                    >
+                        <h3 class="tracking-tight text-sm font-medium">
+                            Completed
+                        </h3>
+                        <i
+                            data-lucide="check-circle-2"
+                            class="w-4 h-4 text-primary"
+                        ></i>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <div
+                            class="text-2xl font-bold font-mono"
+                            id="completedCount"
+                        >
+                            0
+                        </div>
+                        <p
+                            class="text-xs text-muted-foreground font-serif italic"
+                        >
+                            Topics finished
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Revised -->
+                <div
+                    class="rounded-lg border bg-card text-card-foreground shadow"
+                >
+                    <div
+                        class="p-6 flex flex-row items-center justify-between space-y-0 pb-2"
+                    >
+                        <h3 class="tracking-tight text-sm font-medium">
+                            Revised
+                        </h3>
+                        <i
+                            data-lucide="refresh-cw"
+                            class="w-4 h-4 text-accent-foreground"
+                        ></i>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <div
+                            class="text-2xl font-bold font-mono"
+                            id="revisedCount"
+                        >
+                            0
+                        </div>
+                        <p
+                            class="text-xs text-muted-foreground font-serif italic"
+                        >
+                            Topics reviewed
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Progress -->
+                <div
+                    class="rounded-lg border bg-card text-card-foreground shadow"
+                >
+                    <div
+                        class="p-6 flex flex-row items-center justify-between space-y-0 pb-2"
+                    >
+                        <h3 class="tracking-tight text-sm font-medium">
+                            Overall Progress
+                        </h3>
+                        <i
+                            data-lucide="trending-up"
+                            class="w-4 h-4 text-primary"
+                        ></i>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <div
+                            class="text-2xl font-bold font-mono"
+                            id="overallProgress"
+                        >
+                            0%
+                        </div>
+                        <div
+                            class="w-full bg-secondary h-2 mt-2 rounded-full overflow-hidden"
+                        >
+                            <div
+                                id="progressBar"
+                                class="bg-primary h-full transition-all duration-500 ease-in-out"
+                                style="width: 0%"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="rounded-lg border bg-card text-card-foreground shadow">
+                <div class="p-6">
+                    <!-- Tabs Navigation -->
+                    <div
+                        class="flex overflow-x-auto pb-4 mb-4 border-b border-border/60 scrollbar-hide"
+                        role="tablist"
+                        id="tabsList"
+                    >
+                        <!-- Tabs injected by JS -->
+                    </div>
+
+                    <!-- Tab Panels -->
+                    <div id="tabPanels" class="mt-4">
+                        <!-- Panels injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const allSyllabi = {
+                CS: {
+                    "Engineering Mathematics": {
+                        "Discrete Mathematics": [
+                            "Propositional and first-order logic",
+                            "Sets, relations, and functions",
+                            "Partial orders and lattices",
+                            "Monoids and Groups",
+                            "Graph connectivity and matching",
+                            "Graph coloring",
+                            "Combinatorics: counting and recurrence relations",
+                            "Generating functions",
+                        ],
+                        "Linear Algebra": [
+                            "Matrices",
+                            "Determinants",
+                            "Systems of linear equations",
+                            "Eigenvalues and eigenvectors",
+                            "LU decomposition",
+                        ],
+                        Calculus: [
+                            "Functions of single variable",
+                            "Limit and continuity",
+                            "Differentiability",
+                            "Taylor series and maxima/minima",
+                        ],
+                        "Probability and Statistics": [
+                            "Probability basics",
+                            "Random variables and distributions",
+                            "Statistical inference",
+                            "Hypothesis testing",
+                        ],
+                        "Numerical Methods": [
+                            "Numerical integration",
+                            "Numerical differentiation",
+                            "Root finding methods",
+                        ],
+                    },
+                    "Digital Logic": {
+                        "Boolean Algebra": [
+                            "Boolean operations",
+                            "Boolean identities",
+                            "Boolean functions",
+                        ],
+                        "Logic Gates": [
+                            "Basic gates (AND, OR, NOT)",
+                            "Universal gates (NAND, NOR)",
+                            "XOR, XNOR gates",
+                        ],
+                        "Combinational Circuits": [
+                            "Multiplexers and demultiplexers",
+                            "Encoders and decoders",
+                            "Adders and subtractors",
+                            "Comparators",
+                        ],
+                        "Sequential Circuits": [
+                            "Latches and flip-flops",
+                            "Counters",
+                            "Registers",
+                            "State machines",
+                        ],
+                        Minimization: [
+                            "Boolean algebra simplification",
+                            "Karnaugh maps",
+                            "Quine-McCluskey method",
+                        ],
+                        "Number Representations": [
+                            "Binary, octal, and hexadecimal",
+                            "Two's complement representation",
+                            "BCD and Gray codes",
+                        ],
+                        "Computer Arithmetic": [
+                            "Fixed-point arithmetic",
+                            "Floating-point arithmetic",
+                            "Overflow and underflow",
+                        ],
+                    },
+                    "Computer Organization and Architecture": {
+                        "Machine Instructions": [
+                            "Instruction types",
+                            "Addressing modes",
+                            "Instruction set architecture",
+                        ],
+                        "ALU and Data-Path": [
+                            "Arithmetic and logic operations",
+                            "Data-path design",
+                            "Control signals",
+                        ],
+                        "Control Unit": [
+                            "Hardwired control",
+                            "Micro-programmed control",
+                            "Control signal generation",
+                        ],
+                        "Instruction Pipelining": [
+                            "Pipeline stages",
+                            "Pipeline hazards (data, control, structural)",
+                            "Hazard resolution",
+                        ],
+                        "Memory Hierarchy": [
+                            "Cache memory (direct-mapped, associative, set-associative)",
+                            "Cache replacement policies",
+                            "Main memory organization",
+                            "Virtual memory",
+                            "Secondary storage",
+                        ],
+                        "I/O Organization": [
+                            "I/O interface design",
+                            "Interrupt-driven I/O",
+                            "DMA (direct memory access)",
+                            "I/O protocols",
+                        ],
+                    },
+                    "Programming and Data Structures": {
+                        "C Programming": [
+                            "Variables and data types",
+                            "Control flow (loops, conditionals)",
+                            "Functions and recursion",
+                            "Arrays and strings",
+                            "Pointers and memory management",
+                            "Structures and unions",
+                        ],
+                        Stacks: [
+                            "Stack operations (push, pop, peek)",
+                            "Applications (expression evaluation, backtracking)",
+                            "Stack implementation",
+                        ],
+                        Queues: [
+                            "Queue operations (enqueue, dequeue)",
+                            "Circular queues",
+                            "Priority queues",
+                            "Queue applications",
+                        ],
+                        "Linked Lists": [
+                            "Singly linked lists",
+                            "Doubly linked lists",
+                            "Circular linked lists",
+                            "Linked list operations",
+                        ],
+                        Trees: [
+                            "Tree traversals (inorder, preorder, postorder)",
+                            "Tree properties",
+                            "Tree applications",
+                        ],
+                        "Binary Search Trees": [
+                            "BST operations (search, insert, delete)",
+                            "BST balancing",
+                            "AVL trees",
+                        ],
+                        "Binary Heaps": [
+                            "Min heaps and max heaps",
+                            "Heap operations",
+                            "Heap sort",
+                        ],
+                        Graphs: [
+                            "Graph representations (adjacency list, matrix)",
+                            "Graph properties",
+                            "Graph applications",
+                        ],
+                    },
+                    Algorithms: {
+                        Searching: [
+                            "Linear search",
+                            "Binary search",
+                            "Hashing and hash functions",
+                            "Hash table operations",
+                        ],
+                        Sorting: [
+                            "Bubble sort",
+                            "Selection sort",
+                            "Insertion sort",
+                            "Merge sort",
+                            "Quick sort",
+                            "Heap sort",
+                            "Counting sort",
+                            "Radix sort",
+                        ],
+                        "Complexity Analysis": [
+                            "Big-O notation",
+                            "Time and space complexity",
+                            "Worst, best, and average cases",
+                        ],
+                        "Greedy Algorithms": [
+                            "Greedy choice property",
+                            "Optimal substructure",
+                            "Activity selection",
+                            "Huffman coding",
+                        ],
+                        "Dynamic Programming": [
+                            "Overlapping subproblems",
+                            "Memoization",
+                            "Tabulation",
+                            "Classic DP problems",
+                        ],
+                        "Divide and Conquer": [
+                            "Merge sort",
+                            "Quick sort",
+                            "Strassen's matrix multiplication",
+                        ],
+                        "Graph Algorithms": [
+                            "DFS and BFS",
+                            "Minimum spanning tree (Kruskal's, Prim's)",
+                            "Shortest path (Dijkstra's, Bellman-Ford, Floyd-Warshall)",
+                        ],
+                    },
+                    "Theory of Computation": {
+                        "Finite Automata": [
+                            "DFA (deterministic finite automata)",
+                            "NFA (non-deterministic finite automata)",
+                            "DFA to NFA conversion",
+                            "Minimization of automata",
+                        ],
+                        "Regular Expressions": [
+                            "Regular expression syntax",
+                            "Pattern matching",
+                            "Regular languages",
+                            "Regular language properties",
+                        ],
+                        "Context-Free Grammars": [
+                            "CFG definition and derivations",
+                            "Parse trees",
+                            "Ambiguous grammars",
+                            "Chomsky normal form",
+                        ],
+                        "Push-Down Automata": [
+                            "PDA definition",
+                            "Deterministic and non-deterministic PDA",
+                            "Acceptance by final state and empty stack",
+                        ],
+                        "Languages and Pumping Lemma": [
+                            "Regular language properties",
+                            "Context-free language properties",
+                            "Pumping lemma for regular languages",
+                            "Pumping lemma for CFLs",
+                        ],
+                        "Turing Machines": [
+                            "TM definition",
+                            "Deterministic and non-deterministic TM",
+                            "TM extensions",
+                            "Turing completeness",
+                        ],
+                        Undecidability: [
+                            "Decidable languages",
+                            "Undecidable problems",
+                            "Halting problem",
+                            "Reduction",
+                        ],
+                    },
+                    "Compiler Design": {
+                        "Lexical Analysis": [
+                            "Lexeme and token",
+                            "Lexical analyzer design",
+                            "Regular expressions for tokens",
+                            "DFA for lexical analysis",
+                        ],
+                        Parsing: [
+                            "Top-down parsing (recursive descent, LL parsing)",
+                            "Bottom-up parsing (LR parsing, SLR, CLR)",
+                            "Parsing tables",
+                        ],
+                        "Syntax-Directed Translation": [
+                            "SDT rules",
+                            "Synthesized and inherited attributes",
+                            "Semantic actions",
+                        ],
+                        "Runtime Environments": [
+                            "Activation records",
+                            "Symbol tables",
+                            "Memory allocation",
+                        ],
+                        "Intermediate Code": [
+                            "Three-address code",
+                            "P-code",
+                            "Intermediate representation",
+                        ],
+                        "Code Generation": [
+                            "Register allocation",
+                            "Instruction selection",
+                            "Code optimization",
+                        ],
+                        Optimization: [
+                            "Constant propagation",
+                            "Dead code elimination",
+                            "Common subexpression elimination",
+                            "Loop optimizations",
+                        ],
+                        "Data Flow Analysis": [
+                            "Reaching definitions",
+                            "Liveness analysis",
+                            "Available expressions",
+                        ],
+                    },
+                    "Operating System": {
+                        "Processes and Threads": [
+                            "Process states and transitions",
+                            "Process creation and termination",
+                            "Process scheduling",
+                            "Threads vs processes",
+                            "Thread creation and management",
+                        ],
+                        "Concurrency and Synchronization": [
+                            "Race conditions",
+                            "Critical sections",
+                            "Semaphores",
+                            "Mutexes",
+                            "Monitors",
+                            "Condition variables",
+                        ],
+                        Deadlock: [
+                            "Deadlock conditions",
+                            "Deadlock prevention",
+                            "Deadlock avoidance (Banker's algorithm)",
+                            "Deadlock detection and recovery",
+                        ],
+                        "CPU Scheduling": [
+                            "FCFS scheduling",
+                            "SJF scheduling",
+                            "Priority scheduling",
+                            "Round-robin scheduling",
+                            "Multi-level queues",
+                        ],
+                        "Memory Management": [
+                            "Logical vs physical address",
+                            "Paging",
+                            "Segmentation",
+                            "Virtual memory",
+                            "Page replacement algorithms",
+                        ],
+                        "I/O Scheduling": [
+                            "FCFS disk scheduling",
+                            "SSTF scheduling",
+                            "SCAN and C-SCAN algorithms",
+                        ],
+                        "File Systems": [
+                            "File concepts",
+                            "Directory structures",
+                            "File allocation methods",
+                            "Free space management",
+                            "File protection",
+                        ],
+                    },
+                    Databases: {
+                        "ER Model": [
+                            "Entity and attributes",
+                            "Relationships",
+                            "Cardinality constraints",
+                            "ER diagram design",
+                        ],
+                        "Relational Model": [
+                            "Relation and tuple concepts",
+                            "Relational schema",
+                            "Relational constraints",
+                        ],
+                        "Relational Algebra": [
+                            "Basic operations (select, project, union)",
+                            "Join operations",
+                            "Aggregation functions",
+                            "Query optimization",
+                        ],
+                        "Tuple Calculus": [
+                            "Domain and tuple variables",
+                            "Quantifiers",
+                            "Calculus vs algebra",
+                        ],
+                        SQL: [
+                            "DDL (CREATE, ALTER, DROP)",
+                            "DML (INSERT, UPDATE, DELETE, SELECT)",
+                            "Complex queries and subqueries",
+                            "Joins and views",
+                        ],
+                        "Integrity Constraints": [
+                            "Domain constraints",
+                            "Key constraints",
+                            "Referential integrity",
+                            "Check constraints",
+                        ],
+                        "Normal Forms": [
+                            "Functional dependencies",
+                            "1NF, 2NF, 3NF",
+                            "BCNF",
+                            "Higher normal forms",
+                        ],
+                        "File Organization": [
+                            "Heap files",
+                            "Sorted files",
+                            "Hash files",
+                            "B-tree and B+ tree files",
+                        ],
+                        Indexing: [
+                            "Primary and secondary indexes",
+                            "Sparse and dense indexes",
+                            "B-tree and B+ tree indexes",
+                            "Hash indexes",
+                        ],
+                        Transactions: [
+                            "ACID properties",
+                            "Transaction states",
+                            "Concurrency control",
+                            "Locking mechanisms",
+                        ],
+                        "Concurrency Control": [
+                            "Lost update problem",
+                            "Dirty read problem",
+                            "Serializability",
+                            "Two-phase locking",
+                            "Timestamp ordering",
+                        ],
+                    },
+                    "Computer Networks": {
+                        "Network Models": [
+                            "OSI model layers",
+                            "TCP/IP model",
+                            "Protocol layering",
+                        ],
+                        "Application Layer": [
+                            "HTTP and HTTPS",
+                            "FTP and SFTP",
+                            "DNS (domain name system)",
+                            "Email protocols (SMTP, POP3, IMAP)",
+                            "Telnet and SSH",
+                            "DHCP",
+                        ],
+                        "Transport Layer": [
+                            "TCP (transmission control protocol)",
+                            "UDP (user datagram protocol)",
+                            "Connection establishment and termination",
+                            "Flow control and congestion control",
+                            "Port numbers",
+                        ],
+                        "Network Layer": [
+                            "IP addressing (IPv4, IPv6)",
+                            "Subnetting and CIDR",
+                            "Routing algorithms (RIP, OSPF, BGP)",
+                            "ICMP",
+                        ],
+                        "Data Link Layer": [
+                            "Framing",
+                            "Error detection and correction",
+                            "MAC addressing",
+                            "Switching",
+                            "VLANs",
+                        ],
+                        "Physical Layer": [
+                            "Transmission media (copper, fiber, wireless)",
+                            "Signal encoding",
+                            "Modulation",
+                        ],
+                        "Network Security": [
+                            "Encryption basics",
+                            "Digital signatures",
+                            "Public key infrastructure",
+                            "Firewalls and VPNs",
+                            "Network intrusion detection",
+                        ],
+                    },
+                },
+                DA: {
+                    "Probability and Statistics": {
+                        Probability: [
+                            "Counting (permutation and combinations)",
+                            "Probability axioms",
+                            "Sample space",
+                            "Events",
+                            "Independent events",
+                            "Mutually exclusive events",
+                            "Marginal probability",
+                            "Conditional probability",
+                            "Joint probability",
+                            "Bayes Theorem",
+                        ],
+                        "Random Variables": [
+                            "Conditional expectation",
+                            "Conditional variance",
+                            "Mean",
+                            "Median",
+                            "Mode",
+                            "Standard deviation",
+                            "Correlation",
+                            "Covariance",
+                            "Random variables",
+                            "Discrete random variables and PMF",
+                            "Continuous random variables and PDF",
+                            "CDF",
+                            "Conditional PDF",
+                        ],
+                        Distributions: [
+                            "Uniform (discrete)",
+                            "Bernoulli",
+                            "Binomial",
+                            "Uniform (continuous)",
+                            "Exponential",
+                            "Poisson",
+                            "Normal",
+                            "Standard normal",
+                            "t-distribution",
+                            "Chi-squared distributions",
+                        ],
+                        Inference: [
+                            "Central limit theorem",
+                            "Confidence interval",
+                            "z-test",
+                            "t-test",
+                            "Chi-squared test",
+                        ],
+                    },
+                    "Linear Algebra": {
+                        "Vector Spaces": [
+                            "Vector space",
+                            "Subspaces",
+                            "Linear dependence and independence of vectors",
+                        ],
+                        Matrices: [
+                            "Matrices",
+                            "Projection matrix",
+                            "Orthogonal matrix",
+                            "Idempotent matrix",
+                            "Partition matrix and their properties",
+                            "Quadratic forms",
+                            "Systems of linear equations and solutions",
+                            "Gaussian elimination",
+                        ],
+                        Decompositions: [
+                            "Eigenvalues and eigenvectors",
+                            "Determinant",
+                            "Rank",
+                            "Nullity",
+                            "Projections",
+                            "LU decomposition",
+                            "Singular value decomposition",
+                        ],
+                    },
+                    "Calculus and Optimization": {
+                        Calculus: [
+                            "Functions of a single variable",
+                            "Limit",
+                            "Continuity and differentiability",
+                            "Taylor series",
+                        ],
+                        Optimization: [
+                            "Maxima and minima",
+                            "Optimization involving a single variable",
+                        ],
+                    },
+                    "Programming & Data Structures": {
+                        Programming: ["Programming in Python"],
+                        "Data Structures": [
+                            "Basic data structures: stacks, queues, linked lists, trees, hash tables",
+                        ],
+                        Algorithms: [
+                            "Search algorithms: linear search and binary search",
+                            "Basic sorting algorithms: selection sort, bubble sort and insertion sort",
+                            "Divide and conquer: mergesort, quicksort",
+                        ],
+                        "Graph Theory": [
+                            "Introduction to graph theory",
+                            "Basic graph algorithms: traversals and shortest path",
+                        ],
+                    },
+                    "DBMS & Warehousing": {
+                        "Database Management": [
+                            "ER-model",
+                            "Relational model: relational algebra, tuple calculus, SQL",
+                            "Integrity constraints",
+                            "Normal form",
+                            "File organization",
+                            "Indexing",
+                            "Data types",
+                        ],
+                        "Data Warehousing": [
+                            "Data transformation: normalization, discretization, sampling, compression",
+                            "Data warehouse modelling: schema for multidimensional data models",
+                            "Concept hierarchies",
+                            "Measures: categorization and computations",
+                        ],
+                    },
+                    "Machine Learning": {
+                        "Supervised Learning": [
+                            "Regression and classification problems",
+                            "Simple linear regression",
+                            "Multiple linear regression",
+                            "Ridge regression",
+                            "Logistic regression",
+                            "k-nearest neighbour",
+                            "Naive Bayes classifier",
+                            "Linear discriminant analysis",
+                            "Support vector machine",
+                            "Decision trees",
+                            "Bias-variance trade-off",
+                            "Cross-validation methods (LOO, k-folds)",
+                        ],
+                        "Neural Networks": [
+                            "Multi-layer perceptron",
+                            "Feed-forward neural network",
+                        ],
+                        "Unsupervised Learning": [
+                            "Clustering algorithms",
+                            "k-means/k-medoid",
+                            "Hierarchical clustering (Top-down, Bottom-up, Single/Multiple-linkage)",
+                            "Dimensionality reduction",
+                            "Principal component analysis",
+                        ],
+                    },
+                    "Artificial Intelligence": {
+                        Search: ["Search: informed, uninformed, adversarial"],
+                        Logic: ["Logic: propositional, predicate"],
+                        Reasoning: [
+                            "Reasoning under uncertainty",
+                            "Conditional independence representation",
+                            "Exact inference through variable elimination",
+                            "Approximate inference through sampling",
+                        ],
+                    },
+                },
+            };
+
+            let currentExam = "CS";
+            let totalTopics = 0;
+
+            function switchExam(exam) {
+                currentExam = exam;
+
+                // Visual updates for buttons
+                const btnCS = document.getElementById("btn-cs");
+                const btnDA = document.getElementById("btn-da");
+
+                if (exam === "CS") {
+                    btnCS.className =
+                        "px-4 py-1.5 text-sm font-medium rounded-md transition-all bg-background text-foreground shadow-sm";
+                    btnDA.className =
+                        "px-4 py-1.5 text-sm font-medium rounded-md transition-all text-muted-foreground hover:bg-background/50 hover:text-foreground";
+                    document.getElementById("pageTitle").textContent =
+                        "GATE CS/DA Tracker";
+                } else {
+                    btnDA.className =
+                        "px-4 py-1.5 text-sm font-medium rounded-md transition-all bg-background text-foreground shadow-sm";
+                    btnCS.className =
+                        "px-4 py-1.5 text-sm font-medium rounded-md transition-all text-muted-foreground hover:bg-background/50 hover:text-foreground";
+                    document.getElementById("pageTitle").textContent =
+                        "GATE DA 2026 Tracker";
+                }
+
+                // Re-init everything
+                totalTopics = 0; // reset counter before rebuilding
+                document.getElementById("tabsList").innerHTML = ""; // clear tabs
+                document.getElementById("tabPanels").innerHTML = ""; // clear panels
+
+                initApp(); // build UI for new exam
+                loadProgress(); // load progress for new exam
+            }
+
+            function switchTab(tab) {
+                const allTabs = document.querySelectorAll('[role="tab"]');
+                const allPanels =
+                    document.querySelectorAll('[role="tabpanel"]');
+                const panelId = tab.getAttribute("aria-controls");
+
+                // Update Tabs Style
+                allTabs.forEach((t) => {
+                    const isActive = t === tab;
+                    t.setAttribute("aria-selected", isActive);
+                    t.tabIndex = isActive ? 0 : -1;
+                    if (isActive) {
+                        t.className =
+                            "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-background text-foreground shadow-sm mr-2";
+                    } else {
+                        t.className =
+                            "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-muted-foreground hover:bg-muted/50 hover:text-foreground mr-2";
+                    }
+                });
+
+                // Show Panel
+                allPanels.forEach((p) => {
+                    if (p.id === panelId) {
+                        p.classList.remove("hidden");
+                    } else {
+                        p.classList.add("hidden");
+                    }
+                });
+            }
+
+            function initApp() {
+                const tabsList = document.getElementById("tabsList");
+                const tabPanels = document.getElementById("tabPanels");
+                const syllabus = allSyllabi[currentExam];
+                const subjects = Object.keys(syllabus);
+
+                subjects.forEach((subject, idx) => {
+                    const tabId = `tab-${idx}`;
+                    const panelId = `panel-${idx}`;
+                    const isFirst = idx === 0;
+
+                    // Tab button
+                    const btn = document.createElement("button");
+                    btn.type = "button";
+                    btn.role = "tab";
+                    btn.id = tabId;
+                    btn.setAttribute("aria-controls", panelId);
+                    btn.setAttribute("aria-selected", isFirst);
+                    btn.tabIndex = isFirst ? 0 : -1;
+                    btn.textContent = subject;
+                    btn.className = isFirst
+                        ? "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-background text-foreground shadow-sm mr-2"
+                        : "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 text-muted-foreground hover:bg-muted/50 hover:text-foreground mr-2";
+
+                    btn.onclick = () => switchTab(btn);
+                    tabsList.appendChild(btn);
+
+                    // Panel
+                    const panel = document.createElement("div");
+                    panel.role = "tabpanel";
+                    panel.id = panelId;
+                    panel.setAttribute("aria-labelledby", tabId);
+                    panel.tabIndex = -1;
+                    if (!isFirst) panel.className = "hidden";
+
+                    // Table Construction
+                    const tableContainer = document.createElement("div");
+                    tableContainer.className = "relative w-full overflow-auto";
+
+                    const table = document.createElement("table");
+                    table.className = "w-full caption-bottom text-sm";
+
+                    table.innerHTML = `
+          <thead class="[&_tr]:border-b">
+            <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+              <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground font-serif">Topic</th>
+              <th class="h-12 px-4 text-center align-middle font-medium text-muted-foreground w-24 font-serif">Done</th>
+              <th class="h-12 px-4 text-center align-middle font-medium text-muted-foreground w-24 font-serif">Revised</th>
+              <th class="h-12 px-4 text-center align-middle font-medium text-muted-foreground w-24 font-serif">Notes</th>
+            </tr>
+          </thead>
+        `;
+
+                    const tbody = document.createElement("tbody");
+                    tbody.className = "[&_tr:last-child]:border-0";
+
+                    const subtopics = syllabus[subject];
+
+                    Object.keys(subtopics).forEach((sub, subIdx) => {
+                        const headerRow = document.createElement("tr");
+                        headerRow.className =
+                            "border-b transition-colors bg-muted/30 hover:bg-muted/50";
+                        headerRow.innerHTML = `<td colspan="4" class="p-4 align-middle font-semibold text-primary font-serif">${sub}</td>`;
+                        tbody.appendChild(headerRow);
+
+                        subtopics[sub].forEach((topic, topicIdx) => {
+                            const id = `${currentExam}-${idx}-${subIdx}-${topicIdx}`; // Prefixed with Exam ID!
+                            totalTopics++;
+
+                            const tr = document.createElement("tr");
+                            tr.className =
+                                "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted";
+                            tr.innerHTML = `
+              <td class="p-4 align-middle">${topic}</td>
+              <td class="p-4 align-middle text-center">
+                <input type="checkbox" id="complete-${id}" class="custom-checkbox" onchange="updateProgress()">
+              </td>
+              <td class="p-4 align-middle text-center">
+                <input type="checkbox" id="revised-${id}" class="custom-checkbox" onchange="updateProgress()">
+              </td>
+              <td class="p-4 align-middle text-center">
+                <input type="checkbox" id="practice-${id}" class="custom-checkbox" onchange="updateProgress()">
+              </td>
+            `;
+                            tbody.appendChild(tr);
+                        });
+                    });
+
+                    table.appendChild(tbody);
+                    tableContainer.appendChild(table);
+                    panel.appendChild(tableContainer);
+                    tabPanels.appendChild(panel);
+                });
+
+                document.getElementById("totalTopics").textContent =
+                    totalTopics;
+            }
+
+            function updateProgress() {
+                // Scoped query selector to only count checkboxes for current exam
+                // But actually, we prefix IDs with currentExam, so we just filter by ID string start
+                // Note: document.querySelectorAll('input:checked') gets everything.
+
+                const allChecked = Array.from(
+                    document.querySelectorAll('input[type="checkbox"]:checked'),
+                );
+                const examPrefix = `${currentExam}-`;
+
+                const completed = allChecked.filter((cb) =>
+                    cb.id.startsWith(`complete-${examPrefix}`),
+                ).length;
+                const revised = allChecked.filter((cb) =>
+                    cb.id.startsWith(`revised-${examPrefix}`),
+                ).length;
+                const practiced = allChecked.filter((cb) =>
+                    cb.id.startsWith(`practice-${examPrefix}`),
+                ).length;
+
+                document.getElementById("completedCount").textContent =
+                    completed;
+                document.getElementById("revisedCount").textContent = revised;
+
+                const pct = totalTopics
+                    ? Math.round((completed / totalTopics) * 100)
+                    : 0;
+                document.getElementById("overallProgress").textContent =
+                    pct + "%";
+                document.getElementById("progressBar").style.width = pct + "%";
+
+                // Save
+                const storageKey = `gate_progress_${currentExam.toLowerCase()}`;
+                localStorage.setItem(
+                    storageKey,
+                    JSON.stringify({
+                        progress: Array.from(
+                            document.querySelectorAll(
+                                `input[id*="-${examPrefix}"]`,
+                            ),
+                        ).reduce((acc, cb) => {
+                            acc[cb.id] = cb.checked;
+                            return acc;
+                        }, {}),
+                    }),
+                );
+            }
+
+            function loadProgress() {
+                try {
+                    const storageKey = `gate_progress_${currentExam.toLowerCase()}`;
+                    const data = JSON.parse(
+                        localStorage.getItem(storageKey) || "{}",
+                    );
+                    Object.entries(data.progress || {}).forEach(
+                        ([id, checked]) => {
+                            const el = document.getElementById(id);
+                            if (el) el.checked = checked;
+                        },
+                    );
+                    updateProgress();
+                } catch (e) {}
+            }
+
+            function resetProgress() {
+                if (
+                    !confirm(
+                        `Are you sure you want to reset all progress for GATE ${currentExam}? This cannot be undone.`,
+                    )
+                )
+                    return;
+                const examPrefix = `${currentExam}-`;
+                document
+                    .querySelectorAll(`input[id*="-${examPrefix}"]`)
+                    .forEach((cb) => {
+                        cb.checked = false;
+                    });
+                updateProgress();
+            }
+
+            function exportProgress() {
+                const examPrefix = `${currentExam}-`;
+                const data = {
+                    exam: `GATE ${currentExam} 2026`,
+                    timestamp: new Date().toISOString(),
+                    progress: Array.from(
+                        document.querySelectorAll(
+                            `input[id*="-${examPrefix}"]`,
+                        ),
+                    ).reduce((acc, cb) => {
+                        acc[cb.id] = cb.checked;
+                        return acc;
+                    }, {}),
+                };
+
+                const blob = new Blob([JSON.stringify(data, null, 2)], {
+                    type: "application/json",
+                });
+                const a = document.createElement("a");
+                a.href = URL.createObjectURL(blob);
+                a.download = `GATE_${currentExam}_Tracker_${new Date().toISOString().slice(0, 10)}.json`;
+                a.click();
+            }
+
+            function importProgress(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    try {
+                        const data = JSON.parse(ev.target.result);
+
+                        // Basic validation to check if file matches current exam context
+                        const firstKey = Object.keys(data.progress || {})[0];
+                        if (
+                            firstKey &&
+                            !firstKey.includes(`-${currentExam}-`)
+                        ) {
+                            if (
+                                !confirm(
+                                    `This file appears to be for a different exam or version. Import anyway?`,
+                                )
+                            )
+                                return;
+                        }
+
+                        Object.entries(data.progress || {}).forEach(
+                            ([id, checked]) => {
+                                const el = document.getElementById(id);
+                                if (el) el.checked = checked;
+                            },
+                        );
+                        updateProgress();
+                        alert("✅ Progress imported successfully!");
+                    } catch {
+                        alert("❌ Invalid file format.");
+                    }
+                };
+                reader.readAsText(file);
+                e.target.value = "";
+            }
+
+            function toggleTheme() {
+                const html = document.documentElement;
+                const isDark = html.classList.contains("dark");
+
+                if (isDark) {
+                    html.classList.remove("dark");
+                    localStorage.setItem("theme", "light");
+                } else {
+                    html.classList.add("dark");
+                    localStorage.setItem("theme", "dark");
+                }
+            }
+
+            function loadTheme() {
+                const theme = localStorage.getItem("theme") || "light";
+                if (
+                    !localStorage.getItem("theme") &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches
+                ) {
+                    document.documentElement.classList.add("dark");
+                } else if (theme === "dark") {
+                    document.documentElement.classList.add("dark");
+                } else {
+                    document.documentElement.classList.remove("dark");
+                }
+            }
+
+            window.addEventListener("DOMContentLoaded", () => {
+                loadTheme();
+                // Start with CS by default
+                switchExam("CS");
+                lucide.createIcons();
+            });
+        </script>
+    </body>
+</html>
